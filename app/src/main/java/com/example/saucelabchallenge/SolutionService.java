@@ -31,7 +31,7 @@ public class SolutionService extends IntentService {
   }
 
   /**
-   * Starts this service to perform action PRINT_SERVICES with the given parameters. If the service
+   * Starts this service to perform action PRINT_SERVICES. If the service
    * is already performing a task this action will be queued.
    *
    * @see IntentService
@@ -43,7 +43,7 @@ public class SolutionService extends IntentService {
   }
 
   /**
-   * Starts this service to perform action CHECK_BATTER_STATUS with the given parameters. If the
+   * Starts this service to perform action CHECK_BATTER_STATUS. If the
    * service is already performing a task this action will be queued.
    *
    * @see IntentService
@@ -92,7 +92,7 @@ public class SolutionService extends IntentService {
       Method getServiceMethod =
           serviceManagerClass.getDeclaredMethod("getService", new Class[] {String.class});
       if (getServiceMethod != null) {
-        IBinder binder =
+        final IBinder binder =
             (IBinder) getServiceMethod.invoke(serviceManagerClass, new Object[] {serviceName});
         if (binder != null) {
           available = true;
@@ -117,7 +117,7 @@ public class SolutionService extends IntentService {
       Method getServiceMethod =
           serviceManagerClass.getDeclaredMethod("getService", new Class[] {String.class});
       if (getServiceMethod != null) {
-        IBinder binder =
+        final IBinder binder =
             (IBinder)
                 getServiceMethod.invoke(
                     serviceManagerClass, new Object[] {Context.BATTERY_SERVICE});
